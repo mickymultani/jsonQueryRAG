@@ -1,0 +1,75 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "items": {
+            "type": "object",
+            "properties": {
+                "item": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": { "type": "string" },
+                            "type": { "type": "string" },
+                            "name": { "type": "string" },
+                            "ppu": { "type": "number" },
+                            "batters": {
+                                "type": "object",
+                                "properties": {
+                                    "batter": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": { "type": "string" },
+                                                "type": { "type": "string" }
+                                            },
+                                            "required": ["id", "type"]
+                                        }
+                                    }
+                                },
+                                "required": ["batter"]
+                            },
+                            "topping": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": { "type": "string" },
+                                        "type": { "type": "string" }
+                                    },
+                                    "required": ["id", "type"]
+                                }
+                            },
+                            "fillings": {
+                                "type": "object",
+                                "properties": {
+                                    "filling": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": { "type": "string" },
+                                                "name": { "type": "string" },
+                                                "addcost": { "type": "number" }
+                                            },
+                                            "required": ["id", "name", "addcost"]
+                                        }
+                                    }
+                                },
+                                "required": ["filling"]
+                            }
+                        },
+                        "required": ["id", "type", "name", "ppu", "batters", "topping"],
+                        "dependencies": {
+                            "fillings": ["type"]
+                        }
+                    }
+                }
+            },
+            "required": ["item"]
+        }
+    },
+    "required": ["items"]
+}
